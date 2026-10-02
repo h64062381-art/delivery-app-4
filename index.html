@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>وصّلني — كل اللي بخاطرك أقرب</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/wasselni.css">
+</head>
+<body>
+<header class="mobile-top">
+  <div class="top-row"><a class="brand" href="#"><span class="brand-mark">و</span><span>وصّلني</span></a><button class="avatar">ه</button></div>
+  <button class="deliver-to"><span class="pin">⌖</span><span><small>التوصيل إلى</small><b>بغداد · اختار منطقتك</b></span><i>⌄</i></button>
+  <div class="hero-search"><span>⌕</span><input id="search" placeholder="شنو نفسك اليوم؟ مطاعم، أكل، قهوة..."/><button onclick="searchRestaurants()">بحث</button></div>
+</header>
+
+<main>
+<section class="welcome">
+  <div class="welcome-copy"><span class="live-dot"></span><b>هسه مفتوحين إلك</b><h1>خلّي<br><em>وصّلني</em> يوصلها.</h1><p>اختار اللي يعجبك، واحنا نرتبلك الباقي من أول طلب لحد بابك.</p></div>
+  <div class="delivery-orbit"><div class="orbit-ring"></div><div class="scooter">🛵</div><div class="orbit-chip chip-a">25 دقيقة</div><div class="orbit-chip chip-b">توصيل سريع</div><div class="orbit-chip chip-c">4.9 ★</div></div>
+</section>
+
+<section class="categories-section">
+  <div class="section-title"><div><span class="label">اختار على مزاجك</span><h2>شنو تريد اليوم؟</h2></div><a href="#restaurants">الكل <b>←</b></a></div>
+  <div class="category-grid">
+    <button onclick="filter('مطاعم')"><span class="cat-icon cat-orange">🍽️</span><b>مطاعم</b><small>وجبات كاملة</small></button>
+    <button onclick="filter('برغر')"><span class="cat-icon cat-yellow">🍔</span><b>برغر</b><small>سريع ولذيذ</small></button>
+    <button onclick="filter('بيتزا')"><span class="cat-icon cat-red">🍕</span><b>بيتزا</b><small>طازة وحارة</small></button>
+    <button onclick="filter('قهوة')"><span class="cat-icon cat-brown">☕</span><b>قهوة</b><small>مزاجك أولاً</small></button>
+    <button onclick="filter('حلويات')"><span class="cat-icon cat-pink">🍰</span><b>حلويات</b><small>شي حلو</small></button>
+    <button onclick="filter('عراقي')"><span class="cat-icon cat-green">🍛</span><b>عراقي</b><small>طعم البيت</small></button>
+  </div>
+</section>
+
+<section id="offers" class="promo-section">
+  <div class="section-title"><div><span class="label">فرصتك اليوم</span><h2>عروض ما تنترك</h2></div><a href="#">شوف الكل <b>←</b></a></div>
+  <div class="promo-track">
+    <article class="promo-card promo-one"><div class="promo-copy"><span class="promo-tag">عرض اليوم</span><h3>خصم يوصل<br><strong>30%</strong></h3><p>على مطاعم مختارة داخل منطقتك.</p><button>اطلب هسه <b>←</b></button></div><div class="promo-visual"><div class="plate">🍔</div><span class="burst">خصم</span></div></article>
+    <article class="promo-card promo-two"><div><span class="promo-tag">لفترة محدودة</span><h3>التوصيل<br><strong>علينا</strong></h3><p>على طلبات محددة اليوم.</p></div><div class="delivery-badge">🛵</div></article>
+    <article class="promo-card promo-three"><div><span class="promo-tag">لأول طلب</span><h3>بداية حلوة<br><strong>إلك</strong></h3><p>عرض ترحيبي من وصّلني.</p></div><div class="gift">✦</div></article>
+  </div>
+  <div class="dots"><i></i><i class="active"></i><i></i></div>
+</section>
+
+<section id="restaurants" class="restaurants-section">
+  <div class="section-title restaurant-head"><div><span class="label">الأكثر طلباً</span><h2>أماكن الناس تحبها</h2></div><div class="filters"><button class="active" onclick="render('الكل')">الكل</button><button onclick="render('برغر')">برغر</button><button onclick="render('بيتزا')">بيتزا</button><button onclick="render('عراقي')">عراقي</button><button onclick="render('قهوة')">قهوة</button></div></div>
+  <div id="grid" class="restaurant-grid"></div>
+</section>
+
+<section class="nearby-strip"><div class="nearby-icon">⌖</div><div><b>نقرّبها إلك</b><span>اكتشف الأماكن القريبة من منطقتك</span></div><button>استكشف القريب <b>←</b></button></section>
+
+<section class="how"><div class="how-intro"><span class="label">تجربة مرتبة</span><h2>من أول نقرة<br><em>لحد بابك.</em></h2><p>بدون تعقيد. كل خطوة واضحة حتى تعرف طلبك وين صار.</p></div><div class="steps"><div><span>01</span><b>اختار</b><p>حدد منطقتك واختار المطعم اللي يعجبك.</p></div><div><span>02</span><b>رتّب</b><p>ضيف طلبك للسلة وشوف التفاصيل والسعر.</p></div><div><span>03</span><b>استلم</b><p>تابع الطلب وخليه يوصل لبابك.</p></div></div></section>
+
+<section class="final-card"><div class="final-mark">و</div><div><span class="label">جاهز؟</span><h2>خلّ أول طلب يكون على وصّلني.</h2><p>اختار أكلك وخلي الطريق علينا.</p></div><button onclick="document.getElementById('restaurants').scrollIntoView({behavior:'smooth'})">ابدأ الطلب <b>←</b></button></section>
+</main>
+
+<footer><div class="brand"><span class="brand-mark">و</span><span>وصّلني</span></div><span>كل اللي بخاطرك أقرب.</span><div><a>الدعم</a><a>الشروط</a><a>الخصوصية</a></div></footer>
+<nav class="bottom-nav"><a class="active" href="#"><span>⌂</span><small>الرئيسية</small></a><a href="#offers"><span>✦</span><small>العروض</small></a><a class="center" href="#restaurants"><b>و</b><small>اطلب</small></a><a href="#restaurants"><span>▤</span><small>طلباتي</small></a><a href="#"><span>♙</span><small>حسابي</small></a></nav>
+<script src="assets/wasselni.js"></script>
+</body></html>
