@@ -1,0 +1,63 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>الطلبات - وصّلني</title><style>
+:root{--p:#8d4f32;--p2:#b96f4c;--bg:#fff9ef;--sand:#f1dfc7;--ink:#29231f;--muted:#7d7067;--white:#fff;--line:#ead8c4;--green:#54715b;--red:#a54b42;--shadow:0 10px 30px rgba(86,48,30,.10)}
+*{box-sizing:border-box}body{margin:0;background:#eee5dc;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,Arial,sans-serif;direction:rtl}a{text-decoration:none;color:inherit}button,input,select{font:inherit}.app{max-width:1180px;margin:auto;min-height:100vh;background:var(--bg)}.top{padding:18px 24px;background:rgba(255,249,239,.97);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}.brand{display:flex;align-items:center;justify-content:space-between}.logo{display:flex;align-items:center;gap:10px;font-size:25px;font-weight:900;color:var(--p)}.mark{width:44px;height:44px;border-radius:15px;background:var(--p);color:#fff;display:grid;place-items:center}.user{display:flex;align-items:center;gap:10px}.avatar{width:42px;height:42px;border-radius:14px;background:var(--sand);display:grid;place-items:center}.layout{display:grid;grid-template-columns:235px 1fr;min-height:calc(100vh - 81px)}.side{border-left:1px solid var(--line);padding:20px 14px;background:#fffaf2}.side a{display:flex;gap:10px;align-items:center;padding:13px 14px;border-radius:14px;margin-bottom:7px;color:var(--muted)}.side a.active,.side a:hover{background:var(--sand);color:var(--p);font-weight:800}.content{padding:24px}.title{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}.title h1{margin:0;font-size:26px}.btn{border:0;background:var(--p);color:#fff;padding:11px 15px;border-radius:13px;font-weight:800;cursor:pointer}.btn.light{background:#fff;color:var(--p);border:1px solid var(--line)}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.stat{background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:var(--shadow)}.stat small{color:var(--muted)}.stat b{display:block;font-size:25px;margin-top:8px}.panel{background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:var(--shadow);margin-top:18px}.panel h2{margin:0 0 14px;font-size:18px}.table{width:100%;border-collapse:collapse}.table th,.table td{padding:13px 10px;text-align:right;border-bottom:1px solid #f0e4d7}.table th{color:var(--muted);font-size:12px}.badge{display:inline-block;padding:6px 10px;border-radius:99px;font-size:12px;font-weight:800;background:#f4eadf;color:var(--p)}.badge.green{background:#e5efe6;color:var(--green)}.badge.red{background:#f5e4e2;color:var(--red)}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.item{background:#fff;border:1px solid var(--line);border-radius:18px;padding:15px}.itemtop{display:flex;justify-content:space-between;gap:10px}.item h3{margin:0 0 5px}.price{color:var(--p);font-weight:900}.muted{color:var(--muted);font-size:13px}.actions{display:flex;gap:8px;margin-top:13px}.actions button{flex:1}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{border:1px solid var(--line);border-radius:13px;padding:12px;background:#fff;width:100%;outline:none}.full{grid-column:1/-1}.notice{padding:13px;border-radius:14px;background:#fff4e8;border:1px solid #efd2b2;line-height:1.7}@media(max-width:800px){.layout{grid-template-columns:1fr}.side{display:flex;overflow:auto;border-left:0;border-bottom:1px solid var(--line);gap:5px}.side a{min-width:max-content;margin:0}.grid4{grid-template-columns:1fr 1fr}.cards{grid-template-columns:1fr}.content{padding:15px}.formgrid{grid-template-columns:1fr}.full{grid-column:auto}}
+</style></head><body><main class="app"><header class="top"><div class="brand"><div class="logo"><span class="mark">و</span>وصّلني <span class="muted">/ لوحة المطعم</span></div><div class="user"><span>مطعم الدار</span><span class="avatar">🍽️</span></div></div></header><div class="layout"><aside class="side"><a class="" href="dashboard.html">📊 الرئيسية</a><a class="active" href="restaurant-orders.html">📦 الطلبات</a><a class="" href="restaurant-menu.html">🍽️ المنيو</a><a class="" href="restaurant-sales.html">💰 المبيعات</a><a class="" href="restaurant-settings.html">⚙️ الإعدادات</a></aside><section class="content">
+<div class="title"><div><h1>الطلبات</h1><p class="muted">إدارة الطلبات الواردة للمطعم</p></div><button class="btn" onclick="location.reload()">تحديث</button></div>
+<div class="panel"><table class="table"><thead><tr><th>رقم الطلب</th><th>الزبون</th><th>الأصناف</th><th>القيمة</th><th>طريقة الاستلام</th><th>الحالة</th><th>إجراء</th></tr></thead><tbody id="rows"></tbody></table></div>
+<script src="supabase-config.js"></script>
+<script>
+// Inline fallback: keeps the app working even if supabase-config.js is not loaded by GitHub Pages.
+window.WASSELNI_SUPABASE = window.WASSELNI_SUPABASE || Object.freeze({
+  url: 'https://ogiflmvzizvupdphxxon.supabase.co',
+  key: 'sb_publishable_TJxZmbtpLDu5dI-ygeVEzA_j3YFh--7'
+});
+window.WASSELNI_DB = window.WASSELNI_DB || {
+  async request(path, options = {}) {
+    const headers = {
+      apikey: window.WASSELNI_SUPABASE.key,
+      Authorization: 'Bearer ' + window.WASSELNI_SUPABASE.key,
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      ...(options.headers || {})
+    };
+    const response = await fetch(window.WASSELNI_SUPABASE.url + '/rest/v1/' + String(path).replace(/^\/+/, ''), { ...options, headers });
+    const text = await response.text();
+    let data = null;
+    try { data = text ? JSON.parse(text) : null; } catch (_) { data = text; }
+    if (!response.ok) {
+      const message = data?.message || data?.hint || data?.details || text || ('HTTP ' + response.status);
+      throw new Error(message);
+    }
+    return data;
+  }
+};
+</script>
+
+<script>
+const rowsBox=document.getElementById('rows');
+let cache=[];
+function esc(v){return String(v??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));}
+function itemsText(items){if(!Array.isArray(items))return '';return items.map(x=>`${esc(x.name||'صنف')} ×${Number(x.qty||1)}`).join(' + ');}
+function badge(status){return `<span class="badge ${status==='جاهز'||status==='تم التسليم'?'green':''}">${esc(status)}</span>`;}
+function draw(){
+ if(!cache.length){rowsBox.innerHTML='<tr><td colspan="7" style="text-align:center;padding:30px">لا توجد طلبات حالياً</td></tr>';return;}
+ rowsBox.innerHTML=cache.map((o,i)=>`<tr><td>#${esc(o.order_code)}</td><td>${esc(o.customer_name)}</td><td>${itemsText(o.items)}</td><td>${Number(o.total||0).toLocaleString()} د.ع</td><td>${esc(o.address||'توصيل')}</td><td>${badge(o.status)}</td><td><button class="btn" onclick="nextStatus(${i})" ${o.status==='تم التسليم'?'disabled':''}>تحديث</button></td></tr>`).join('');
+}
+async function loadOrders(){
+ try{cache=await window.WASSELNI_DB.request('orders?select=*&order=created_at.desc');draw();}
+ catch(err){console.error(err);rowsBox.innerHTML=`<tr><td colspan="7" style="text-align:center;padding:30px;color:#a54b42">تعذر جلب الطلبات: ${esc(err.message)}</td></tr>`;}
+}
+async function nextStatus(i){
+ const o=cache[i]; if(!o)return;
+ const flow=['جديد','قيد التحضير','جاهز','تم التسليم'];
+ const next=flow[Math.min(flow.indexOf(o.status)+1,flow.length-1)];
+ if(next===o.status)return;
+ try{
+  const updated=await window.WASSELNI_DB.request('orders?order_code=eq.'+encodeURIComponent(o.order_code),{method:'PATCH',headers:{Prefer:'return=representation'},body:JSON.stringify({status:next})});
+  cache[i]=Array.isArray(updated)?updated[0]:{...o,status:next}; draw();
+ }catch(err){alert('تعذر تحديث حالة الطلب:\n'+err.message);}
+}
+loadOrders();
+setInterval(loadOrders,5000);
+</script>
+</section></div></main></body></html>
